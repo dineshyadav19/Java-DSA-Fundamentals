@@ -1,5 +1,7 @@
 package Recursion.Recursion2;
 
+import java.util.ArrayList;
+
 public class KeypadCodes {
     public static void main(String[] args) {
         keypadCode("16","");
@@ -36,4 +38,33 @@ public class KeypadCodes {
             keypadCode(roq, ans + rr);
         }
     }
+
+    //Iterative code for Keypad Combination
+    public static void KPC2(String str) {
+
+        ArrayList<String> list = new ArrayList<String>();
+
+        list.add("");
+
+        for (int i = 0; i < str.length(); i++) { // 145
+
+            ArrayList<String> nl = new ArrayList<String>();
+
+            String code = getCode(str.charAt(i));
+
+            for (String val : list) { // list // a b c
+
+                for (int j = 0; j < code.length(); j++) { // options
+                    nl.add(val + code.charAt(j)); // aj ak bj bk cj ck
+                }
+
+            }
+
+            list = nl;
+        }
+
+        System.out.println(list);
+
+    }
+
 }
