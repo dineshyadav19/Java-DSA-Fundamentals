@@ -10,7 +10,9 @@ public class Arrays {
 
         //System.out.println(findOccurrence(arr, 0, 1));
 
-        System.out.println(findLastOccurrence(arr, 0, 30));
+        //System.out.println(findLastOccurrence(arr, 0, 30));
+
+        System.out.println(java.util.Arrays.toString(findAllIndex(arr, 0, 30, 0)));
     }
 
     //print array in reverse order
@@ -82,6 +84,25 @@ public class Arrays {
         else
             return sp;
 
+    }
+
+    //Find All Indexes
+    public static int[] findAllIndex(int[] arr, int vidx, int item, int count) {
+        //base case
+        if(vidx == arr.length){
+            int[] baseArray = new int[count];
+            return baseArray;
+        }
+
+        //work
+        int[] result;
+        if(arr[vidx] == item) {
+            result = findAllIndex(arr, vidx + 1, item, count + 1);
+            result[count] = vidx;
+        } else {
+            result = findAllIndex(arr, vidx + 1, item, count);
+        }
+        return result;
     }
 
 }
