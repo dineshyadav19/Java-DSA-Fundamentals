@@ -6,6 +6,7 @@ public class CoinChangeCase3CoinRespect {
     }
 
     //Case 1: Coins with Finite Supply ---> Coins can be used only once
+    //this logic will only work when array is sorted because it has duplicates
     public static void coinChangeCoinRespect(int[] den, int vidx, int amount, String ans, boolean flag) {
         //base case
         if(amount == 0) {
