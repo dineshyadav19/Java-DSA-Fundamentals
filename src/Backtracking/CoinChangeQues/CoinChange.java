@@ -1,4 +1,4 @@
-package Backtracking;
+package Backtracking.CoinChangeQues;
 
 public class CoinChange {
     public static void main(String[] args) {
