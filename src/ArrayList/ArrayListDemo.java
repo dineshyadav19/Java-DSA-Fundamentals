@@ -41,38 +41,38 @@ public class ArrayListDemo {
 		System.out.println(list); // [ [10,20,30,100],[40,50,200] ]
 
 
-		ArrayList<ArrayList<Integer>> list = new ArrayList<>() ;
+		ArrayList<ArrayList<Integer>> list1 = new ArrayList<>() ;
 
 		ArrayList<Integer> temp = new ArrayList<>() ;
 		temp.add(10) ;
 		temp.add(20) ;
 		temp.add(30) ;
-		list.add(temp) ;
+		list1.add(temp) ;
 
 		temp = new ArrayList<Integer>() ; // Not writing this line will perform operations on same arraylist temp,
                                           // doing this would create new reference of temp
 		temp.add(40) ;
 		temp.add(50) ;
-		list.add(temp) ;
+		list1.add(temp) ;
 
 		temp = new ArrayList<Integer>();
 		temp.add(60) ;
 		temp.add(70) ;
-		list.add(temp) ;
+		list1.add(temp) ;
 
-		System.out.println(list); //[ [10,20,30],[40,50],[60,70] ]
+		System.out.println(list1); //[ [10,20,30],[40,50],[60,70] ]
 
 		temp.add(80) ;
 
-		System.out.println(list); //[ [10,20,30],[40,50],[60,70,80] ]
+		System.out.println(list1); //[ [10,20,30],[40,50],[60,70,80] ]
 
 		temp.remove(temp.size()-1) ;
 		temp.remove(temp.size()-1) ;
 
-		System.out.println(list); //[ [10,20,30],[40,50],[60] ]
+		System.out.println(list1); //[ [10,20,30],[40,50],[60] ]
 
 
-		ArrayList<ArrayList<Integer>> list = new ArrayList<>();
+		ArrayList<ArrayList<Integer>> list2 = new ArrayList<>();
 
 		ArrayList<Integer> t1 = new ArrayList<Integer>();
 		t1.add(10);
@@ -85,12 +85,12 @@ public class ArrayListDemo {
 		* which has reference to t2, so now t2 and t1 are pointing to same address
 		* making change through t2 will point change in t1.
 		* */
-		ArrayList<Integer> t2 = t1 ;
+		//ArrayList<Integer> t2 = t1 ;
 
-		list.add(t1) ;
-		list.add(t2) ;
+		//list2.add(t1) ;
+		//list2.add(t2) ;
 
-		System.out.println(list); //[[10,20,30,40],[10,20,30,40]]
+		System.out.println(list2); //[[10,20,30,40],[10,20,30,40]]
 
 		ArrayList<Integer> t2 = new ArrayList<>(t1); //this is creating another arraylist t2 at different address with
 		                                             //content of t1
@@ -101,32 +101,33 @@ public class ArrayListDemo {
 			t2.add(t1.get(i)) ;
 		}
 
-		list.add(t1);
-		list.add(t2);
+		list2.add(t1);
+		list2.add(t2);
 		t2.add(100);
 
-		System.out.println(list);
+		System.out.println(list2);
 
-        ArrayList<ArrayList<Integer>> list = new ArrayList<>() ;
-
-        ArrayList<Integer> temp = new ArrayList<>() ;
-
-        temp.add(10) ;
-        temp.add(20) ;
-
-        list.add(new ArrayList<>(temp)) ;
-
-        temp.add(30) ;
-        temp.add(40) ;
-
-        list.add(new ArrayList<>(temp)) ;
-
-        temp.add(50) ;
-
-        list.add(new ArrayList<>(temp)) ;
-
-
-        System.out.println(list);
+//        ArrayList<ArrayList<Integer>> list = new ArrayList<>() ;
+//
+//        ArrayList<Integer> temp = new ArrayList<>() ;
+//
+//        temp.add(10) ;
+//        temp.add(20) ;
+//
+//        list.add(new ArrayList<>(temp)) ; //new ArrayList<> --> this will create new arraylist at different address
+//        									//and copy the content of temp in it
+//
+//        temp.add(30) ;
+//        temp.add(40) ;
+//
+//        list.add(new ArrayList<>(temp)) ;
+//
+//        temp.add(50) ;
+//
+//        list.add(new ArrayList<>(temp)) ;
+//
+//
+//        System.out.println(list);
 
 
     }
