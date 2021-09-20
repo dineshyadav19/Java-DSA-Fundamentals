@@ -1,15 +1,11 @@
-package Queue;
+package OOPS.Queue;
 
 public class Queue {
-<<<<<<< HEAD
+
    protected int[] data;
    protected int front;
    protected int size;
-=======
-    int[] data;
-    int front;
-    int size;
->>>>>>> 337fd5e0fb2b6994f28ad0b6c87cd00701fa3ca1
+
 
     public Queue() {
         data = new int[5];
@@ -26,7 +22,7 @@ public class Queue {
     public void enqueue(int item) throws Exception {
 
         if (isFull()) {
-            throw new Exception("Queue is Full.");
+            throw new Exception("OOPS.Queue is Full.");
         }
 
         int idx = (front + size) % data.length;
@@ -38,7 +34,7 @@ public class Queue {
     public int dequeue() throws Exception {
 
         if (isEmpty()) {
-            throw new Exception("Queue is Empty.");
+            throw new Exception("OOPS.Queue is Empty.");
         }
 
         int temp = data[front];
@@ -53,7 +49,7 @@ public class Queue {
     public int getFront() throws Exception {
 
         if (isEmpty()) {
-            throw new Exception("Queue is Empty.");
+            throw new Exception("OOPS.Queue is Empty.");
         }
 
         int temp = data[front];

@@ -1,4 +1,4 @@
-package Queue;
+package OOPS.Queue;
 
 public class QueueClient {
     public static void main(String[] args) throws Exception{
