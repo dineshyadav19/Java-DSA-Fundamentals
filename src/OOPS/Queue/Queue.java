@@ -1,9 +1,15 @@
 package Queue;
 
 public class Queue {
+<<<<<<< HEAD
    protected int[] data;
    protected int front;
    protected int size;
+=======
+    int[] data;
+    int front;
+    int size;
+>>>>>>> 337fd5e0fb2b6994f28ad0b6c87cd00701fa3ca1
 
     public Queue() {
         data = new int[5];
