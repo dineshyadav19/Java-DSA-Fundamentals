@@ -16,5 +16,10 @@ public class QueueClient {
         System.out.println(q.dequeue());
 
         q.display();
+
+        q.enqueue(60);
+        q.enqueue(70);
+
+        q.display();
     }
 }
