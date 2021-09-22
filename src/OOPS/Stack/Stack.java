@@ -1,8 +1,8 @@
 package OOPS.Stack;
 
 public class Stack {
-    int[] data;
-    int tos;
+    protected int[] data;
+    protected int tos;
 
     public Stack() {
         data = new int[5];
