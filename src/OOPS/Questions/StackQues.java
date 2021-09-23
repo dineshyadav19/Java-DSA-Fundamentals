@@ -1,7 +1,8 @@
 package OOPS.Questions;
 
 import OOPS.DynamicStackQueue.DynamicStack;
-import OOPS.Stack.Stack;
+
+import java.util.Stack;
 
 public class StackQues {
     public static void main(String[] args) throws Exception{
@@ -23,6 +24,22 @@ public class StackQues {
         actualReverse(stack, new DynamicStack());
 
         stack.display();
+
+        System.out.println("-----------  Find Celeb  -----------");
+
+        int[][] arr = {
+                {0,1,1,1},
+                {1,0,1,0},
+                {0,0,0,0},
+                {1,1,1,0}
+        };
+
+        findCelebrity(arr);
+
+        System.out.println("-----------  Find Next Greater Element  -----------");
+
+        int[] arr1 = {50,30,20,40,10,45,5,60,15,8};
+        nextGreaterElement(arr1);
 
 
     }
@@ -69,5 +86,140 @@ public class StackQues {
         copyFromHelper(stack, helper);
 
         stack.push(temp);
+    }
+
+    public static void findCelebrity(int[][] arr) {
+        Stack<Integer> check = new Stack<>();
+
+        for (int i = 0; i < arr.length; i++) {
+            check.push(i);
+        }
+
+
+        while (check.size() >= 2) {
+            int a = check.pop();
+            int b = check.pop();
+
+            // a knows b , a can't be a celeb , a discard
+            if(arr[a][b] == 1) {
+                check.push(b);
+            }
+            // b knows a, b can't be a celeb , b discard
+            else {
+                check.push(a);
+            }
+        }
+
+        int candidate = check.pop();
+
+        for (int i = 0; i < arr.length; i++) {
+            if(i == candidate)
+                continue;
+
+            if(arr[candidate][i] == 1 || arr[i][candidate] == 0){
+                System.out.println("No celeb found");
+                return;
+            }
+        }
+
+        System.out.println(candidate + " is celebrity");
+    }
+
+    public static void nextGreaterElement(int[] arr) {
+        Stack<Integer> s = new Stack<>();
+
+        // go to every element
+        for (int i = 0; i < arr.length; i++) {
+
+            // arr[i] want to be next greater
+            while (!s.isEmpty() && arr[i] >= s.peek()) {
+                System.out.println(s.pop() + " -> " + arr[i]);
+            }
+
+            // push arr[i]
+            s.push(arr[i]);
+        }
+
+        // if some values are left in stack, then there nge is -1
+        while (!s.isEmpty()) {
+            System.out.println(s.pop() + " -> -1");
+        }
+    }
+
+    public static int[] nextGreaterElement2(int[] arr) {
+
+        int[] ans = new int[arr.length];
+
+        Stack<Integer> s = new Stack<>();
+
+        // go to every element
+        for (int i = 0; i < arr.length; i++) {
+
+            // arr[i] want to be next greater
+            while (!s.isEmpty() && arr[i] >= arr[s.peek()]) {
+                ans[s.pop()] = arr[i];
+            }
+
+            // push index i
+            s.push(i);
+        }
+
+        // if some values are left in stack, then there nge is -1
+        while (!s.isEmpty()) {
+            ans[s.pop()] = -1;
+        }
+
+        return ans;
+
+    }
+
+    public static int[] nextGreaterElement3(int[] arr) {
+
+        Stack<Integer> s = new Stack<>();
+
+        int[] ans = new int[arr.length];
+
+        for (int i = arr.length - 1; i >= 0; i--) {
+
+            while (!s.isEmpty() && s.peek() <= arr[i]) {
+                s.pop();
+            }
+
+            if (s.isEmpty())
+                ans[i] = -1;
+            else
+                ans[i] = s.peek();
+
+            s.push(arr[i]);
+
+        }
+
+        return ans;
+
+    }
+
+    public static int[] stockSpan(int[] arr) {
+
+        Stack<Integer> s = new Stack<>();
+
+        int[] ans = new int[arr.length];
+
+        for (int i = 0; i < arr.length; i++) {
+
+            while (!s.isEmpty() && arr[i] >= arr[s.peek()]) {
+                s.pop();
+            }
+
+            if (s.isEmpty())
+                ans[i] = i;
+            else
+                ans[i] = i - s.peek() - 1;
+
+            s.push(i);
+
+        }
+
+        return ans;
+
     }
 }
