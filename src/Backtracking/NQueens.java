@@ -3,9 +3,12 @@ package Backtracking;
 public class NQueens {
     public static void main(String[] args) {
         boolean[][] board = new boolean[4][4];
-        Nqueen(board, 0, 0, 0, board.length, "");
+        //Nqueen(board, 0, 0, 0, board.length, "");
+        NQueen2(board, 0,0, 4, "");
+        //KQueen(board, 0, 0, 3, "");
     }
 
+    static int count;
     public static void Nqueen(boolean[][] board, int row, int col, int qpsf, int total, String ans) {
         //base case
         if(qpsf == total) {
@@ -81,5 +84,56 @@ public class NQueens {
         }
 
         return true;
+    }
+
+    public static void NQueen2(boolean[][] board, int row, int qpsf, int total, String ans){
+
+        //base case
+        if(qpsf == total){
+            System.out.println(++count + "." + ans);
+            return;
+        }
+
+        //- base case
+        if(row == board.length){
+            return;
+        }
+
+        //work
+        for (int col = 0; col < board[0].length; col++) {
+            if(isItSafeToPlace(board, row, col)) {
+                board[row][col] = true;
+                NQueen2(board, row + 1, qpsf + 1, total, ans + "{" + row + "-" + col + "}");
+                board[row][col] = false;
+            }
+        }
+
+    }
+
+    public static void KQueen(boolean[][] board, int row, int qpsf, int total, String ans){
+
+        //base case
+        if(qpsf == total){
+            System.out.println(++count + "." + ans);
+            return;
+        }
+
+        //- base case
+        if(row == board.length){
+            return;
+        }
+
+        //work
+        for (int col = 0; col < board[0].length; col++) {
+            if(isItSafeToPlace(board, row, col)) {
+                board[row][col] = true;
+                KQueen(board, row + 1, qpsf + 1, total, ans + "{" + row + "-" + col + "}");
+                board[row][col] = false;
+            }
+        }
+
+        //not place
+        KQueen(board, row + 1, qpsf, total, ans);
+
     }
 }
