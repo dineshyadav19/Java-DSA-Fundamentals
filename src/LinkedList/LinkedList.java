@@ -17,6 +17,8 @@ public class LinkedList {
             System.out.print(temp.data + " ");
             temp = temp.next;
         }
+
+        System.out.println();
     }
 
     //Get size of LL
@@ -81,7 +83,7 @@ public class LinkedList {
             throw new Exception("LL is empty");
         }
 
-        if(idx < 0 || idx > size() - 1) {
+        if(idx < 0 || idx >= size()) {
             throw new Exception("Invalid Index");
         }
 
@@ -155,6 +157,71 @@ public class LinkedList {
             n1.next = nn;
             nn.next = n2;
 
+        }
+
+    }
+
+    //remove last from LL
+    public int removeLast() throws Exception{
+
+        if(isEmpty()) {
+            throw new Exception("List is Empty");
+        }
+
+        int temp = getLast();
+
+        if(size() == 1) {
+            head = null;
+        } else {
+            Node ln = getNodeAt(size() - 2);
+            ln.next = null;
+        }
+
+        return temp;
+    }
+
+    //remove first from LL
+    public int removeFirst() throws Exception {
+        if (isEmpty()){
+            throw new Exception("List is Empty");
+        }
+
+        int temp = getFirst();
+
+        if(size() == 1) {
+            head = null;
+        } else {
+            Node fn = getNodeAt(0);
+            head = fn.next;
+            fn.next = null;
+        }
+
+        return temp;
+    }
+
+    //remove at a particular index
+    public int removeAt(int idx) throws Exception {
+
+        if(isEmpty()) {
+            throw new Exception("LL is empty");
+        }
+
+        if(idx < 0 || idx >= size()) {
+            throw new Exception("Invalid Index");
+        }
+
+        if(idx == 0)
+            return removeFirst();
+        else if(idx == size() - 1)
+            return removeLast();
+        else {
+            Node n1 = getNodeAt(idx - 1); //node prev to the node which has to be removed
+            Node n2 = n1.next; //node which is to be removed
+            Node n3 = n2.next; //node which has to link to the prev node
+
+            n1.next = n3; //linking of node
+
+            return n2.data;
         }
 
     }
