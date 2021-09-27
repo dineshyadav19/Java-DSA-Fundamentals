@@ -1,0 +1,162 @@
+package LinkedList;
+
+public class LinkedList {
+
+    private class Node {
+        int data;
+        Node next;
+    }
+
+    private Node head ;
+
+    //display the LinkedList
+    public void display() {
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
+        }
+    }
+
+    //Get size of LL
+    public int size() {
+        int count = 0;
+
+        Node temp = head;
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+
+        return count;
+    }
+
+    //check if LL is empty
+    public boolean isEmpty() {
+         return head == null;
+    }
+
+    //get first of LL
+    public int getFirst() throws Exception{
+        if(isEmpty()) {
+            throw new Exception("LL is empty");
+        }
+        return head.data;
+    }
+
+    //get last
+    public int getLast() {
+        Node temp = head;
+
+        while (temp.next != null) {
+            temp = temp.next;
+        }
+
+        return temp.data;
+    }
+
+    //get data at index
+    public int getAt(int idx) throws Exception{
+        if(isEmpty()) {
+            throw new Exception("LL is empty");
+        }
+
+        if(idx < 0 || idx > size() - 1) {
+            throw new Exception("Invalid Index");
+        }
+
+        Node temp = head;
+        for (int i = 0; i < idx; i++) {
+            temp = temp.next;
+        }
+
+        return temp.data;
+    }
+
+
+    //get node at a particular index
+    private Node getNodeAt(int idx) throws Exception{
+        if(isEmpty()) {
+            throw new Exception("LL is empty");
+        }
+
+        if(idx < 0 || idx > size() - 1) {
+            throw new Exception("Invalid Index");
+        }
+
+        Node temp = head;
+        for (int i = 0; i < idx; i++) {
+            temp = temp.next;
+        }
+
+        return temp;
+    }
+
+    //add last to Ll
+    public void addLast(int data) throws Exception {
+        Node nn = new Node(); //nn --> new node
+
+        nn.data = data;
+        nn.next = null;
+
+        if (isEmpty()) {
+
+            // your ll was already empty, now you are adding an element for the 1st time
+            // special case
+            head = nn;
+
+        } else {
+
+            // linking
+            Node last = getNodeAt(size() - 1);
+            last.next = nn;
+
+        }
+    }
+
+    //add first to LL
+    public void addFirst(int item) throws Exception{
+
+        //create a new node
+        Node nn = new Node();
+        nn.data = item;
+        nn.next = null;
+
+        //link the new node to the head
+        nn.next = head;
+        head = nn;
+    }
+
+    //add at a particular index
+    public void addAt(int idx, int item) throws Exception {
+
+        if (idx < 0 || idx > size()) {
+            throw new Exception("Invalid Index.");
+        }
+
+        if (idx == 0)
+            addFirst(item);
+
+        else if (idx == size())
+            addLast(item);
+
+        else {
+
+            // create a new node
+            Node nn = new Node();
+            nn.data = item;
+            nn.next = null;
+
+            // linking
+            Node n1 = getNodeAt(idx - 1);
+            Node n2 = getNodeAt(idx);
+
+            n1.next = nn;
+            nn.next = n2;
+
+        }
+
+    }
+
+}
