@@ -226,4 +226,44 @@ public class LinkedList {
 
     }
 
+    //Linked list reverse iteratively
+    public void reverse() {
+        Node temp = head; //temp is the previous node to the current node
+        Node current = temp.next; //current node which has to be linked back with previous
+
+        while (current != null) {
+            Node ahead = current.next; //storing next node's address so that reference doesn't get lost somewhere
+            current.next = temp; //linking
+
+            temp = current; //moving
+            current = ahead;
+        }
+
+        head.next = null; //updating head to avoid infinite loop
+        head = temp; //setting last node as head
+    }
+
+    //Linked list reverse using recursion
+    private void reverseRecursion(Node previous, Node current) {
+        //base case
+        if(current == null) {
+            head = previous;
+            return;
+        }
+
+        reverseRecursion(current, current.next);
+        current.next = previous;
+    }
+
+    /*
+    * Why we did this?
+    * This is called abstraction.
+    * When we want to call a function where we are passing some parameters which
+    * are private and don't want the client to get access of it. then we create another public function
+    * where we'll call that private function with private variables/parameters and functions
+    * and then the client can get access to that public function only.
+    * */
+    public void reverseRecursion() {
+        reverseRecursion(null, head);
+    }
 }
