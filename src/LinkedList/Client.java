@@ -31,5 +31,10 @@ public class Client {
 		ll.reverseRecursion();
 		ll.display();
 
+        System.out.println(ll.mid());
+        System.out.println(ll.kLastElement(5));
+
+        ll.createList();
+
     }
 }

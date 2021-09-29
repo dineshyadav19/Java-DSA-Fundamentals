@@ -5,6 +5,14 @@ public class LinkedList {
     private class Node {
         int data;
         Node next;
+
+        Node(int data) {
+            this.data = data;
+        }
+
+        Node() {
+
+        }
     }
 
     private Node head ;
@@ -266,4 +274,126 @@ public class LinkedList {
     public void reverseRecursion() {
         reverseRecursion(null, head);
     }
+
+    //LinkedList Reverse while going deep into the recursion
+    private void reverseDeepRecursion(Node prev, Node curr) {
+        //base case
+        if(curr == null){
+            return;
+        }
+
+        Node ahead = curr.next;
+        curr.next = prev;
+
+        reverseDeepRecursion(curr, ahead);
+
+    }
+
+    //Linked List reverse using single variable
+    private void reverseSingle(Node curr) {
+        //base case
+        if(curr.next == null) {
+            head = curr;
+            return;
+        }
+
+        reverseSingle(curr.next);
+        curr.next.next = curr;
+    }
+
+    public void reverseR() {
+        Node temp = head;
+        reverseSingle(head);
+        temp.next = null;
+    }
+
+    //find the middle node data
+    public int mid() {
+        Node slow = head;
+        Node fast = head;
+
+        //fast != null -> this condition should come first otherwise it'll throw null pointer exception
+        //because if fast reaches null, and it'll do fast.next
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        return slow.data;
+    }
+
+    //find the kth element from last
+    public int kLastElement(int k) {
+        Node slow = head;
+        Node fast = head;
+
+        for (int i = 0; i < k; i++) {
+            fast = fast.next;
+        }
+
+        while (fast != null) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        return slow.data;
+    }
+
+    public void createList() {
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(3);
+        Node n4 = new Node(4);
+        Node n5 = new Node(5);
+        Node n6 = new Node(6);
+        Node n7 = new Node(7);
+        Node n8 = new Node(8);
+        Node n9 = new Node(9);
+        Node n10 = new Node(10);
+        Node n11 = new Node(11);
+        Node n12 = new Node(12);
+        Node n13 = new Node(13);
+
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
+        n5.next = n6;
+        n6.next = n7;
+        n7.next = n8;
+        n8.next = n9;
+        n9.next = n10;
+        n10.next = null;
+
+        n13.next = n12;
+        n12.next = n11;
+        n11.next = n4;
+
+        System.out.println(intersection(n1, n13));
+    }
+
+    //find the intersection of two LL
+    public int intersection(Node h1, Node h2) {
+
+        Node fp = h1;
+        Node sp = h2;
+
+        while (fp != sp) {
+
+            if (fp == null)
+                fp = h2;
+            else
+                fp = fp.next;
+
+            if (sp == null)
+                sp = h1;
+            else
+                sp = sp.next;
+
+        }
+
+        return fp.data ;
+
+    }
+
 }
