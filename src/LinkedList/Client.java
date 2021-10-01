@@ -6,12 +6,12 @@ public class Client {
         ll.addLast(10);
         ll.addLast(20);
         ll.addLast(30);
-        //ll.display();
+//      ll.display();
 
         ll.addLast(40);
-		//ll.display();
+//		ll.display();
         ll.addLast(50);
-        ll.display();
+//      ll.display();
 //		ll.addAt(2, 60);
 //		ll.display();
 //		System.out.println(ll.getFirst());
@@ -28,13 +28,22 @@ public class Client {
 //		System.out.println(ll.removeAt(2));
 //		ll.display();
 
-		ll.reverseRecursion();
-		ll.display();
+//		ll.reverseRecursion();
+//		ll.display();
+//
+//        System.out.println(ll.mid());
+//        System.out.println(ll.kLastElement(5));
 
-        System.out.println(ll.mid());
-        System.out.println(ll.kLastElement(5));
+//        ll.createList();
 
-        ll.createList();
+        ll.addLast(60);
+        ll.addLast(70);
+        ll.addLast(80);
+        ll.addLast(90);
+        ll.display();
+        ll.kReverse(3);
+        ll.display();
+
 
     }
 }

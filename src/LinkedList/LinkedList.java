@@ -396,4 +396,56 @@ public class LinkedList {
 
     }
 
+    //kReverse question
+    private Node kReverse(Node node, int k) {
+        //base case
+        if(node == null)
+            return null;
+
+        Node temp = node;
+
+        //to identify the argument of smaller problem
+        for (int i = 1; i <= k && temp != null; i++) {
+            temp = temp.next;
+        }
+
+        //smaller problem: s2 and s3 reverse
+        Node prev = kReverse(temp, k);
+
+        //self work: reverse s1
+        Node curr = node;
+
+
+        while (curr != temp) {
+            Node ahead = curr.next;
+            curr.next = prev;
+
+            prev = curr;
+            curr = ahead;
+        }
+
+        return prev;
+    }
+
+    public void kReverse(int k) {
+        head = kReverse(head, k);
+    }
+
+    //detect loop in LL ---> Floyd cycle detection algorithm
+    public boolean detectLoop(Node h1) {
+        Node slow = h1;
+        Node fast = h1;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next;
+
+            if(slow == fast){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
