@@ -2,6 +2,7 @@ package OOPS.Questions;
 
 import OOPS.DynamicStackQueue.DynamicStack;
 
+import java.util.Arrays;
 import java.util.Stack;
 
 public class StackQues {
@@ -41,6 +42,9 @@ public class StackQues {
         int[] arr1 = {50,30,20,40,10,45,5,60,15,8};
         nextGreaterElement(arr1);
 
+        int[] arr2 = {1,2,1};
+        int[] ans = nextGreaterElement2(arr2);
+        System.out.println(Arrays.toString(ans));
 
     }
 
