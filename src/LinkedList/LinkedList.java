@@ -441,11 +441,40 @@ public class LinkedList {
             fast = fast.next;
 
             if(slow == fast){
+                //removeLoop(slow, h1); ----> remove the loop
                 return true;
             }
         }
 
         return false;
+    }
+
+    //remove loop in LL
+    public void removeLoop(Node meet, Node h) {
+
+        //no. of nodes in loop
+        int count = 1;
+        Node temp = meet;
+        while(temp.next != meet) {
+            count++;
+            temp = temp.next;
+        }
+
+        //move a pointer counter no. of steps
+        Node fast = h;
+        for (int i = 0; i < count; i++) {
+            fast = fast.next;
+        }
+
+        //make slow and fast move at same speed
+        Node slow = h;
+        while(slow.next != fast.next) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        fast.next = null;
+
     }
 
 }
